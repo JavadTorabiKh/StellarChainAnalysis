@@ -1,0 +1,16 @@
+  <!DOCTYPE html>
+  <html>
+  <head>
+      <link rel="stylesheet" href="{{ url_for('static', filename='view.css') }}">
+    <title>نمایش سطرها</title>
+  </head>
+  <body>
+    <div class="container">
+        <form method="POST" action="{{ url_for('process_form') }}">
+            <input type="text" name="pub1" placeholder="From">
+            <input type="text" name="pub2" placeholder="To">
+            <button type="submit">Send</button>
+          </form>
+    </div>
+  </body>
+  </html>
