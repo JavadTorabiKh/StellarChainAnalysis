@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <title>نمایش سطرها</title>
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+        <div class="col">From : </div>
+    </div>
+    <div class="row">
+        <div class="col">To : </div>
+    </div>
+
+    {% for name in names %}
+        <div class="row">
+            <div class="col">{{ name }} : {{ name }}</div>
+        </div>
+    {% endfor %}
+
+  </div>
+</body>
+</html>
