@@ -5,18 +5,22 @@ import json
 URI = "bolt://localhost:7687"
 AUTH = ("neo4j", "123456789")
 
-with GraphDatabase.driver(URI, auth=AUTH) as driver: 
-    driver.verify_connectivity()
+
 
 def getRecords(p1 , p2):
+    with GraphDatabase.driver(URI, auth=AUTH) as driver: 
+        driver.verify_connectivity()
     records, summary, keys = driver.execute_query(
         'MATCH ('+p1+':NODE {name:"'+p1+'"}),('+p2+':NODE {name:"'+p2+'"}), p = shortestPath(('+p1+')-[*]->('+p2+')) RETURN p  as name',
         database_="neo4j",
     )
-    
+    driver.close()
     return records
 
+ 
 def getData(p1,p2):
+    account = []
+    amount = [] 
     records = getRecords(p1,p2)
     for record in records:  
         for i in record["name"]:
@@ -29,10 +33,9 @@ def getData(p1,p2):
                 account.append(a1)
             if a2 not in account:
                 account.append(a2)
+    return account, amount
 
-account = []
-amount = []  
-getData("GD3ZN2T6QQMKLAGKKMWHHU4FITANVJBTREEJERHTWGWF2GSBPOSHGCLU","GBT67MMDODT5NTYWQGDUFEQGMF2MQT5JHOUFYHVXOIB4PL3QSOPRNAHO")        
-print(account)
-print(amount)
-driver.close()
+
+# ("GD3ZN2T6QQMKLAGKKMWHHU4FITANVJBTREEJERHTWGWF2GSBPOSHGCLU","GBT67MMDODT5NTYWQGDUFEQGMF2MQT5JHOUFYHVXOIB4PL3QSOPRNAHO")        
+# print(account)
+# print(amount)

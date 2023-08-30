@@ -1,7 +1,9 @@
 from flask import Flask, render_template, request, redirect, url_for
+import conectToNeo4j as con
 
 app = Flask(__name__ ,template_folder='templates')
-app.debug = True
+# app.debug = True
+
 
 @app.route('/')
 def index():
@@ -9,8 +11,9 @@ def index():
 
 @app.route('/process', methods=['POST'])
 def process_form():
-    names = [request.form['pub1'], request.form['pub2']]
-    return redirect(url_for('result', names=names))
+    account, amount = con.getData(request.form['pub1'],request.form['pub2'])
+    print(account)
+    return redirect(url_for('result', names=account))
 
 @app.route('/result')
 def result():
@@ -18,4 +21,4 @@ def result():
     return render_template('view.html', names=names)
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host='127.0.0.1', port=8080, debug=True)

@@ -7,15 +7,18 @@
 <body>
   <div class="container">
     <div class="row">
-        <div class="col">From : </div>
+        <div class="col">From : {{names[0]}} </div>
     </div>
     <div class="row">
-        <div class="col">To : </div>
+        <div class="col">To : {{names[-1]}}</div>
     </div>
-
-    {% for name in names %}
+    <div class="row">
+      <div class="col">  ...  </div>
+  </div>
+    
+    {% for name in names %}    
         <div class="row">
-            <div class="col">{{ name }} : {{ name }}</div>
+            <div class="col">{{ name }}</div>
         </div>
     {% endfor %}
 
