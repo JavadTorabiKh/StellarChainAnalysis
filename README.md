@@ -20,9 +20,9 @@ The primary goal of this project is to develop tools and algorithms that can ide
 To get started with the project, follow these steps:
 
 1. Clone this repository to your local machine.
-2. Install the necessary dependencies by running `npm install`.
-3. Configure your Stellar account credentials in the `config.js` file.
-4. Run the application by executing `node app.js`.
+2. Install the necessary dependencies by running `pip install`.
+3. Configure your Stellar account credentials in the `config.py` file.
+4. Run the application by executing .
 
 ## Contributing
 
@@ -37,6 +37,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Contact
 
-If you have any questions or suggestions regarding this project, feel free to contact us at (Gmail :j.2528840@gmail.com).
+If you have any questions or suggestions regarding this project, feel free to contact us at [j.2528840@gmail.com](j.2528840@gmail.com).
 
 Happy analyzing! 🚀
