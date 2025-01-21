@@ -1,6 +1,6 @@
 # Stellar Blockchain Analysis Project
 
-![Stellar Logo](stellar_logo.png)
+![Stellar Logo](https://www.shutterstock.com/image-vector/stellar-xlm-cryptocurrency-vector-icon-new-1338089741)
 
 Welcome to the Stellar Blockchain Analysis project repository! This project focuses on analyzing on-chain data stored on the Stellar network, aiming to detect and track malicious transactions.
 
