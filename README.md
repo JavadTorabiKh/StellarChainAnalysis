@@ -37,6 +37,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Contact
 
-If you have any questions or suggestions regarding this project, feel free to contact us at Gmail :j.2528840@gmail.com.
+If you have any questions or suggestions regarding this project, feel free to contact us at (Gmail :j.2528840@gmail.com).
 
 Happy analyzing! 🚀
