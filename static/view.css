@@ -44,7 +44,6 @@ h1 {
     margin-bottom: 20px;
 }
 
-/* استایل لینک‌ها */
 a {
     color: #337ab7;
     text-decoration: none;
@@ -54,7 +53,6 @@ a:hover {
     text-decoration: underline;
 }
 
-/* استایل فوتر */
 footer {
     text-align: center;
     padding: 10px;
