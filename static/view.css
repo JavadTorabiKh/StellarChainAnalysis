@@ -34,14 +34,12 @@ body {
     padding: 0 10px;
 }
 
-/* استایل ستون‌ها */
 .col {
     background-color: #f9f9f9;
     padding: 10px;
     border-radius: 3px;
 }
 
-/* استایل عنوان صفحه */
 h1 {
     color: #333;
     text-align: center;
