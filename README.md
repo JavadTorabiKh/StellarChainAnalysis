@@ -15,6 +15,17 @@ The primary goal of this project is to develop tools and algorithms that can ide
 - Visualization of transaction patterns
 - Historical analysis of account behavior
 
+## config
+```bash
+    StellarAnalysis/
+    ├── app/
+    │   ├── __init__.py
+    │   ├── view.py         
+    │   └── requirements.txt
+    ├── Dockerfile
+    └── docker-compose.yml
+```
+
 ## Getting Started
 
 To get started with the project, follow these steps:
