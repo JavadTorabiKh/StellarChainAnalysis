@@ -18,10 +18,18 @@ The primary goal of this project is to develop tools and algorithms that can ide
 ## config
 ```bash
     StellarAnalysis/
+    ├── .github/workflows/
+    ├── static/
+    ├── templates/
     ├── app/
     │   ├── __init__.py
     │   ├── view.py         
     │   └── requirements.txt
+    ├── .gitignore
+    ├── README.md
+    ├── Thesis Format.doc
+    ├── Thesis_defense.pptx
+    ├── stellar_chain_analysis.docx
     ├── Dockerfile
     └── docker-compose.yml
 ```
