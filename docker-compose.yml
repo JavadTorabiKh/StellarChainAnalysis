@@ -1,30 +1,141 @@
+# Docker Compose Configuration for Flask + Neo4j Application
+# Optimized for development and production readiness
+
 version: '3.9'
 
 services:
+  # Flask Web Application Service
   web:
-    build: .
-    container_name: flask_app
+    build: 
+      context: .  # Use current directory as build context
+      dockerfile: Dockerfile  # Specify Dockerfile path
+    container_name: flask_app  # Custom container name for easy identification
     ports:
-      - "5000:5000"
+      - "5000:5000"  # Map host port 5000 to container port 5000
     volumes:
-      - ./app:/app
+      - ./app:/app  # Mount app directory for live code reloading
+      - ./logs:/app/logs  # Mount logs directory for persistence
     depends_on:
-      - neo4j
+      - neo4j  # Ensure Neo4j starts before web service
     environment:
-      - NEO4J_URI=bolt://neo4j:7687
-      - NEO4J_USER=neo4j
-      - NEO4J_PASSWORD=your_password_here
+      # Neo4j connection configuration
+      - NEO4J_URI=bolt://neo4j:7687  # Neo4j Bolt protocol URI
+      - NEO4J_USER=neo4j  # Database username
+      - NEO4J_PASSWORD=your_secure_password_here  # Database password - CHANGE IN PRODUCTION
+      
+      # Application environment variables
+      - FLASK_ENV=development  # Set Flask environment
+      - FLASK_DEBUG=1  # Enable debug mode
+      - PYTHONUNBUFFERED=1  # Disable Python output buffering
+    restart: unless-stopped  # Auto-restart policy
+    networks:
+      - app_network  # Custom network for service communication
 
+  # Neo4j Database Service
   neo4j:
-    image: neo4j:5.19
-    container_name: neo4j_db
+    image: neo4j:5.19  # Use specific Neo4j version for stability
+    container_name: neo4j_db  # Custom container name
     ports:
-      - "7474:7474"   # Neo4j browser
-      - "7687:7687"   # Bolt protocol
+      - "7474:7474"   # Neo4j Browser interface
+      - "7687:7687"   # Bolt protocol for database connections
     environment:
-      - NEO4J_AUTH=neo4j/your_password_here
+      # Authentication and security
+      - NEO4J_AUTH=neo4j/your_secure_password_here  # Set username/password - CHANGE IN PRODUCTION
+      
+      # Neo4j configuration for better performance
+      - NEO4J_ACCEPT_LICENSE_AGREEMENT=yes  # Accept license agreement
+      - NEO4J_dbms_memory_pagecache_size=512M  # Page cache size
+      - NEO4J_dbms_memory_heap_initial__size=512M  # Initial heap size
+      - NEO4J_dbms_memory_heap_max__size=1G  # Maximum heap size
+      - NEO4J_dbms_security_procedures_unrestricted=apoc.*  # Allow APOC procedures
+      - NEO4J_dbms_security_procedures_allowlist=apoc.*  # APOC procedures allowlist
+      
+      # Performance optimizations
+      - NEO4J_dbms_connector_bolt_thread__pool__min__size=5
+      - NEO4J_dbms_connector_bolt_thread__pool__max__size=50
     volumes:
-      - neo4j_data:/data
+      - neo4j_data:/data  # Persistent data storage
+      - neo4j_logs:/logs  # Persistent log storage
+      - neo4j_import:/var/lib/neo4j/import  # Data import directory
+      - neo4j_plugins:/plugins  # Custom plugins directory
+    restart: unless-stopped  # Auto-restart policy
+    networks:
+      - app_network  # Custom network
+    healthcheck:
+      # Health check to ensure Neo4j is ready
+      test: ["CMD", "cypher-shell", "-u", "neo4j", "-p", "your_secure_password_here", "RETURN 1"]
+      timeout: 10s
+      retries: 5
+      start_period: 30s
 
+  # Optional: Redis Cache Service for Session Storage
+  redis:
+    image: redis:7-alpine  # Lightweight Redis image
+    container_name: redis_cache
+    ports:
+      - "6379:6379"  # Redis port
+    command: redis-server --appendonly yes --maxmemory 128mb --maxmemory-policy allkeys-lru
+    volumes:
+      - redis_data:/data  # Persistent Redis data
+    restart: unless-stopped
+    networks:
+      - app_network
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      timeout: 5s
+      retries: 3
+
+  # Optional: Nginx Reverse Proxy
+  nginx:
+    image: nginx:alpine
+    container_name: nginx_proxy
+    ports:
+      - "80:80"  # HTTP port
+      - "443:443" # HTTPS port (if SSL configured)
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro  # Custom Nginx config
+      - ./ssl:/etc/nginx/ssl:ro  # SSL certificates (if using HTTPS)
+    depends_on:
+      - web
+    restart: unless-stopped
+    networks:
+      - app_network
+
+# Named volumes for data persistence
 volumes:
-  neo4j_data:
+  neo4j_data:  # Neo4j database data
+    driver: local
+  neo4j_logs:  # Neo4j logs
+    driver: local
+  neo4j_import:  # Neo4j import files
+    driver: local
+  neo4j_plugins:  # Neo4j plugins
+    driver: local
+  redis_data:  # Redis data
+    driver: local
+
+# Custom network for isolated communication
+networks:
+  app_network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16  # Custom subnet for app network
+
+# Optional: Resource limits for production
+# x-resource-limits: &resource-limits
+#   deploy:
+#     resources:
+#       limits:
+#         cpus: '1.0'
+#         memory: 1G
+#       reservations:
+#         cpus: '0.5'
+#         memory: 512M
+
+# Uncomment and add to services for production:
+# services:
+#   web:
+#     <<: *resource-limits
+#   neo4j:
+#     <<: *resource-limits
