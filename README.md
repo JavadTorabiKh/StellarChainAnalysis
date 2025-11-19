@@ -1,10 +1,10 @@
-# # StellarGuard – Customizable Graph-Powered Threat Intelligence Platform for Stellar Blockchain
+# # StellarChainAnalysis – Customizable Graph-Powered Threat Intelligence Platform for Stellar Blockchain
 
 ![Stellar Logo](./static/Stellar-1.png)
 
-**StellarGuard** is a **highly customizable, modular, and user-configurable** blockchain analytics and threat intelligence platform for the **Stellar Network**. It ingests raw on-chain data, builds a **dynamic, queryable graph model**, and empowers users to **interact with, extend, and personalize the resulting graph** based on their specific use case — whether security, compliance, research, or business intelligence.
+**StellarChainAnalysis** is a **highly customizable, modular, and user-configurable** blockchain analytics and threat intelligence platform for the **Stellar Network**. It ingests raw on-chain data, builds a **dynamic, queryable graph model**, and empowers users to **interact with, extend, and personalize the resulting graph** based on their specific use case — whether security, compliance, research, or business intelligence.
 
-Unlike rigid tools, StellarGuard is designed as a **flexible infrastructure**:  
+Unlike rigid tools, StellarChainAnalysis is designed as a **flexible infrastructure**:  
 - Users can **define custom node types, relationships, and properties**  
 - **Create personalized risk models** using configurable rules and ML pipelines  
 - **Interact directly with the graph** via APIs, visual queries, or embedded dashboards  
@@ -94,7 +94,7 @@ graph LR
 
 ## Data Model – Graph-First Design
 
-StellarGuard treats the blockchain as a **living, user-extensible graph** — not a fixed schema. While it starts with a minimal core model for Stellar transactions, **every aspect of the graph is designed for mass customization and direct user interaction**.
+StellarChainAnalysis treats the blockchain as a **living, user-extensible graph** — not a fixed schema. While it starts with a minimal core model for Stellar transactions, **every aspect of the graph is designed for mass customization and direct user interaction**.
 
 ### Core Model (Starting Point)
 - **Accounts** – Public keys with balance and activity metadata  
@@ -119,7 +119,7 @@ Through the **Graph Studio** and **Query Console**, users can:
 
 ## Threat Detection Capabilities
 
-StellarGuard identifies a wide range of malicious or suspicious behaviors:
+StellarChainAnalysis identifies a wide range of malicious or suspicious behaviors:
 
 | Threat Type | Detection Method |
 |-----------|------------------|
@@ -146,7 +146,7 @@ All visualizations update instantly via **WebSocket push technology**.
 
 ## Machine Learning Integration
 
-StellarGuard combines **unsupervised and graph-aware ML models**:
+StellarChainAnalysis combines **unsupervised and graph-aware ML models**:
 
 ### Anomaly Detection
 - **Isolation Forest** on transaction velocity, volume, and counterparty diversity  
@@ -172,7 +172,7 @@ All responses follow **OpenAPI 3.0** specification.
 
 ## Deployment & Operations
 
-StellarGuard is fully **containerized** and designed for both development and production:
+StellarChainAnalysis is fully **containerized** and designed for both development and production:
 
 ### Local Development
 - Uses **Docker Compose** to spin up Neo4j, Redis, and the application  
@@ -199,8 +199,8 @@ Future versions will support **Kubernetes** and **cloud-native observability**.
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/StellarGuard.git
-   cd StellarGuard
+   git clone https://github.com/yourusername/StellarChainAnalysis.git
+   cd StellarChainAnalysis
     ```
 2. Copy environment template
    ```bash
@@ -280,10 +280,10 @@ Email: [j.2528840@gmail.com](mailto:j.2528840@gmail.com)
 GitHub: [@javadTorabiKh](https://github.com/javadTorabiKh)  
 
 
-> **StellarGuard** — *Turning blockchain data into defense-grade intelligence.*
+> **StellarChainAnalysis** — *Turning blockchain data into defense-grade intelligence.*
 
 ---
 
 *Built with precision. Powered by graphs. Secured for the future.*  
-**#StellarGuard #BlockchainSecurity #GraphAnalytics #Web3**
+**#StellarChainAnalysis #BlockchainSecurity #GraphAnalytics #Web3**
 
