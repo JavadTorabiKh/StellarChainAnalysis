@@ -1,4 +1,4 @@
-# # StellarChainAnalysis – Customizable Graph-Powered Threat Intelligence Platform for Stellar Blockchain
+# StellarChainAnalysis – Customizable Graph-Powered Threat Intelligence Platform for Stellar Blockchain
 
 ![Stellar Logo](./static/Stellar-1.png)
 
