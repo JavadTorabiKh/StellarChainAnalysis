@@ -136,6 +136,6 @@ dmypy.json
 
 # Cython debug symbols
 cython_debug/
-venv/
+VENV/
 
 # End of https://mrkandreev.name/snippets/gitignore-generator/#Python
