@@ -12,7 +12,6 @@ Unlike rigid tools, StellarChainAnalysis is designed as a **flexible infrastruct
 
 Built for **security teams, auditors, researchers, and enterprises**, it supports **mass customization** — enabling each deployment to evolve into a **tailored on-chain intelligence engine**.
 
-
 ## Project Vision
 
 To create a **trusted, scalable, and extensible security operations platform** that empowers the Stellar ecosystem with proactive threat intelligence, forensic capabilities, and transparent risk assessment.
