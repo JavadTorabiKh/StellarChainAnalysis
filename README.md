@@ -27,7 +27,6 @@ To create a **trusted, scalable, and extensible security operations platform** t
 
 
 ## Architecture (C4 Model – Container Diagram)
-
 ```mermaid
 graph LR
     %% External Services
