@@ -29,65 +29,14 @@ To create a **trusted, scalable, and extensible security operations platform** t
 ## Architecture (C4 Model – Container Diagram)
 ```mermaid
 graph LR
-    %% External Services
-    subgraph External["External Services"]
-        H["Stellar Horizon API\n(horizon.stellar.org)"]
-    end
-
-    %% Ingestion Layer
-    subgraph Ingestion["Ingestion Layer"]
-        I["Horizon Stream Listener\n(WebSocket / SSE)"]
-    end
-
-    %% Messaging
-    subgraph Messaging["Event Bus"]
-        K["Redis Streams\n(Pluggable: Kafka, RabbitMQ)"]
-    end
-
-    %% Processing Layer
-    subgraph Processing["Processing Layer (User-Extensible)"]
-        P["Transaction Processor\n(Custom Parser Plugins)"]
-        G["Graph Enricher\n(Custom Cypher + APOC)"]
-        M["ML Anomaly Detector\n(User-Trainable Models)"]
-    end
-
-    %% Storage
-    subgraph Storage["Graph Storage"]
-        N[(Neo4j Graph DB\nAPOC + GDS + Custom Indexes)]
-    end
-
-    %% API & Interaction
-    subgraph API["User Interaction Layer"]
-        A["REST + GraphQL API\n(Custom Endpoints & Queries)"]
-        Q["Interactive Query Console\n(Live Cypher + Visual Builder)"]
-    end
-
-    %% Frontend
-    subgraph Frontend["Customization Dashboard"]
-        D["Configurable Dashboard\n(Drag-and-Drop + Widgets)"]
-        C["Graph Studio\n(Cytoscape.js + Custom Layouts)"]
-    end
-
-    %% Alerting
-    subgraph Alerting["Alerting & Automation"]
-        S["Configurable Alert Engine\n(Rules + Webhooks + SIEM)"]
-    end
-
-    %% Data Flow
-    H --> I
-    I --> K
-    K --> P
-    K --> G
-    K --> M
+    H["Stellar Horizon API"] --> I["Horizon Stream Listener"]
+    I --> K["Redis Streams"]
+    K --> P["Transaction Processor"]
+    K --> G["Graph Enricher"]
+    K --> M["ML Anomaly Detector"]
     P --> M
-    G --> N
+    G --> N[("Neo4j Graph DB")]
     M --> N
-    N --> A
-    N --> Q
-    A --> D
-    Q --> C
-    M --> S
-    N --> S
 ```
 
 ## Data Model – Graph-First Design
