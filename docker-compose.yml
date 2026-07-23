@@ -1,0 +1,45 @@
+services:
+  web:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    container_name: stellar_app
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "5432:5432"
+    volumes:
+      - .:/app
+      - static_volume:/app/staticfiles
+      - media_volume:/app/media
+      - postgres_data:/var/lib/postgresql/14/main
+      - ./backups:/backups
+    environment:
+      - DJANGO_SETTINGS_MODULE=config.settings
+      - DEBUG=False
+      - SECRET_KEY=${SECRET_KEY:-django-insecure-change-this-in-production}
+      - ALLOWED_HOSTS=localhost,127.0.0.1,10.10.0.10
+      - CSRF_TRUSTED_ORIGINS=http://localhost,http://127.0.0.1,http://10.10.0.10
+      - DOMAIN_NAME=
+      - DB_NAME=stellar
+      - DB_USER=postgres
+      - DB_PASSWORD=
+      - DB_HOST=localhost
+      - DB_PORT=5432
+      - USE_HTTPS=False
+    networks:
+      app_network:
+        ipv4_address: 10.10.0.10
+
+networks:
+  app_network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.10.0.0/24
+          gateway: 10.10.0.1
+
+volumes:
+  postgres_data:
+  static_volume:
+  media_volume:
