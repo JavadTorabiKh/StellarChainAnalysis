@@ -73,5 +73,5 @@ RUN chown -R www-data:www-data /app/staticfiles /app/media /var/log/nginx /var/l
 
 EXPOSE 80 8000 5432
 
-# نقطه ورود
+
 ENTRYPOINT ["/entrypoint.sh"]
