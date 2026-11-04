@@ -228,7 +228,6 @@ GitHub: [@javadTorabiKh](https://github.com/javadTorabiKh)
 
 
 > **StellarChainAnalysis** — *Turning blockchain data into defense-grade intelligence.*
-
 ---
 
 *Built with precision. Powered by graphs. Secured for the future.*  
